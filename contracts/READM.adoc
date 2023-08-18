@@ -1,0 +1,29 @@
+== Account Abstraction ==
+
+Overall, account abstraction aims to provide more flexibility and control in how transactions are initiated and authorized within the Ethereum ecosystem. It allows for the use of contract accounts instead of externally owned accounts (EOAs) for transaction handling. This means that EOAs no longer send transactions directly, but rather send requests to their account contracts. 
+ 
+One notable change is that gas tokens are no longer required to write to the blockchain. Instead, the initiation of transactions is done from the contract side. The account contract verifies if the requester is authorized to make the transaction. 
+ 
+Additionally, the need for signing transactions with public or private keys is reduced. While it is still possible to use them, the contract defines the authorization protocol and method. If the contract requires a specific signing method, it can enforce that requirement. 
+
+== Work Flow ==
+ Users send UserOperation objects into a separate mempool. A special class of actor called bundlers package up a set of these objects into a transaction making a handleOps call to a special contract, and that transaction then gets included in a block.
+ 
+== Core Contracts == 
+
+{{SmartAccount}}
+
+The main abstracted account 
+
+{{Guardian}} 
+
+A specific guardian smart contract for a SmartAccount, requires knowledge about solidity and security in order to implement the specific recovery method.
+
+{{SmartAccountFactory}}
+
+Used to deploy SmartAccounts
+
+{{UniversalGuardian}} 
+
+A universal guardian that has some default methods for smart account recovery
+
